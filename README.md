@@ -1,6 +1,6 @@
 # Morse Code OO
 
-A Particle project named bkdproj
+A Particle project that demos some basic Particle operations and organizes the code in an OO fashion. 
 
 ## Welcome to your project!
 
@@ -28,9 +28,20 @@ If your project includes a library that has not been registered in the Particle 
 
 ## Compiling your project
 
-When you're ready to compile your project, make sure you have the correct Particle device target selected and run `particle compile <platform>` in the CLI or click the Compile button in the Desktop IDE. The following files in your project folder will be sent to the compile service:
+When you're ready to compile your project, make sure you have the correct Particle device target selected and run the following command in the CLI. The following files in your project folder will be sent to the compile service:
 
-- `particle compile photon --target 0.7.0 --saveTo bin/morsecodeoo.bin project.properties src`
+`particle compile photon --target <TARGET_VERSION> --saveTo bin/morsecodeoo.bin project.properties src lib`
+
+The following files in your project folder will be sent to the compile service:
+
 - Everything in the `/src` folder, including your `.ino` application file
 - The `project.properties` file for your project
 - Any libraries stored under `lib/<libraryname>/src`
+
+The compiled `bin` file will be put in the bin directory
+
+## Flashing your project
+
+After you've compiled you can flash you project by running:
+
+`particle flash <DEVICE_NAME or DEVICE_ID>  bin/morsecodeoo.bin`
