@@ -6,7 +6,21 @@ MorseCodeMessage::MorseCodeMessage() {
   setMessage("");
 }
 
+MorseCodeMessage::MorseCodeMessage(int notificationLedPin) {
+  Particle.function("message", &MorseCodeMessage::setMessage, this);
+  setMessage("");
+  setNotificationPin(notificationLedPin);
+}
+
 MorseCodeMessage::~MorseCodeMessage() {
+}
+
+void MorseCodeMessage::setNotificationPin(int pin) {
+  notificationPin = pin;
+}
+
+int MorseCodeMessage::getNotificationPin() {
+  return notificationPin;
 }
 
 String MorseCodeMessage::getEncoding(char character) {
@@ -43,7 +57,11 @@ String MorseCodeMessage::getMessage() {
 int MorseCodeMessage::setMessage(String newMessage) {
     if(isValid(newMessage)) {
         message = newMessage;
-        Particle.publish("Set Message", message);
+        Particle.publish("Setting Message", message);
+        if (getNotificationPin() != -1) {
+            Particle.publish("DEBUG", "Turning on notification pin");
+            digitalWrite(getNotificationPin(), HIGH);
+        }
         return 1;
     }
     return -1;

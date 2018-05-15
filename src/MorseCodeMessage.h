@@ -8,6 +8,7 @@ class MorseCodeMessage {
   private:
   String SPACE = " ";
   String message = "";
+  int notificationPin = -1;
 
   String morseEncoding[37] = {
     "-----",  // 0
@@ -50,6 +51,7 @@ class MorseCodeMessage {
 
   public:
     MorseCodeMessage();
+    MorseCodeMessage(int notificationLedPin);
     ~MorseCodeMessage();
     void setup();
     void loop();
@@ -60,6 +62,8 @@ class MorseCodeMessage {
     bool isValid(String testMessage);
     int setMessage(String newMessage);
     String getMessage();
+    void setNotificationPin(int pin);
+    int getNotificationPin();
     int length();
     MorseCodeCharacter charAt(int i);
 
